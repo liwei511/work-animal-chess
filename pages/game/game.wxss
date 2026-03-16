@@ -1,0 +1,162 @@
+.container.game {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #212121;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.player-info {
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.player-info.red {
+  background: rgba(244, 67, 54, 0.3);
+  color: white;
+}
+
+.player-info.blue {
+  background: rgba(33, 150, 243, 0.3);
+  color: white;
+}
+
+.turn-info {
+  color: white;
+  font-size: 28rpx;
+}
+
+.board {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.row {
+  display: flex;
+  gap: 4rpx;
+  flex: 1;
+}
+
+.cell {
+  flex: 1;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cell.plain {
+  background: #e8f5e9;
+}
+
+.cell.trap {
+  background: #ffe0b2;
+}
+
+.cell.river {
+  background: #81d4fa;
+}
+
+.cell.headquarter {
+  background: #ef9a9a;
+}
+
+.cell.selected-cell {
+  border: 4rpx solid #ffffff;
+  box-shadow: 0 0 10rpx #ffffff;
+}
+
+.piece-emoji {
+  font-size: 48rpx;
+}
+
+.eat-report {
+  background: rgba(255, 255, 255, 0.9);
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+
+.eat-report text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.gameover-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.gameover-content {
+  background: white;
+  border-radius: 24rpx;
+  padding: 60rpx 40rpx;
+  text-align: center;
+  width: 80%;
+}
+
+.gameover-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.gameover-winner {
+  font-size: 36rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.gameover-quote {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+  line-height: 1.6;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #ffa726 0%, #ffcc80 100%);
+  color: white;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  margin-bottom: 15rpx;
+}
+
+.back-btn {
+  background: #eee;
+  color: #666;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+}
+
+.music-toggle {
+  position: fixed;
+  top: 20rpx;
+  right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 32rpx;
+}

@@ -1,0 +1,60 @@
+.container.home {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #424242 0%, #1b1b1b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.title-main {
+  display: block;
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 4rpx 20rpx rgba(0,0,0,0.2);
+  margin-bottom: 20rpx;
+}
+
+.title-sub {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.7);
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 100rpx;
+}
+
+.intro-line {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 15rpx;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #ffa726 0%, #ffcc80 100%);
+  color: white;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  padding: 20rpx 80rpx;
+  box-shadow: 0 10rpx 30rpx rgba(255, 167, 38, 0.3);
+}
+
+.footer {
+  position: absolute;
+  bottom: 60rpx;
+}
+
+.footer text {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.5);
+}

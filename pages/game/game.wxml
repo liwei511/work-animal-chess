@@ -1,0 +1,56 @@
+<view class="container game">
+  <!-- 顶部信息 -->
+  <view class="status-bar">
+    <view class="player-info red">
+      <text>红方 剩余: {{game.redAlive}}</text>
+    </view>
+    <text class="turn-info">{{currentPlayer === 'red' ? '你的回合（红）' : '对手回合（蓝）'}}</text>
+    <view class="player-info blue">
+      <text>蓝方 剩余: {{game.blueAlive}}</text>
+    </view>
+  </view>
+
+  <!-- 棋盘 -->
+  <view class="board">
+    <view 
+      class="row" 
+      wx:for="{{game.board}}" 
+      wx:key="*this"
+    >
+      <view 
+        class="cell {{cell.type}} {{cell.color}} {{selected.y == index && selected.x == cellIdx && 'selected-cell'}}"
+        wx:for="{{item}}" 
+        wx:for-item="cell" 
+        wx:for-index="cellIdx"
+        bindtap="clickCell"
+        data-x="{{cellIdx}}"
+        data-y="{{index}}"
+      >
+        <block wx:if="{{cell.type === 'piece'}}">
+          <text class="piece-emoji {{cell.color}}">{{getRankEmoji(cell.rank)}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 吃掉播报 -->
+  <view wx:if="{{lastEatText}}" class="eat-report">
+    <text>{{lastEatText}}</text>
+  </view>
+
+  <!-- 游戏结束 -->
+  <view wx:if="{{game.gameOver}}" class="gameover-modal">
+    <view class="gameover-content">
+      <text class="gameover-title">游戏结束</text>
+      <text class="gameover-winner">{{winnerName}} 胜利！</text>
+      <text class="gameover-quote">{{winnerQuote}}</text>
+      <button class="restart-btn" bindtap="restartGame">再来一把</button>
+      <button class="back-btn" bindtap="backToHome">返回首页</button>
+    </view>
+  </view>
+
+  <!-- 音乐按钮 -->
+  <button class="music-toggle" bindtap="toggleMusic">
+    {{isMusicPlaying ? '🔊' : '🔇'}}
+  </button>
+</view>

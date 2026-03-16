@@ -1,0 +1,19 @@
+<view class="container home">
+  <view class="title">
+    <text class="title-main">职场斗兽棋</text>
+    <text class="title-sub">中二职场版，吃你老板没商量</text>
+  </view>
+
+  <view class="intro">
+    <text class="intro-line">传统斗兽棋改成职场版</text>
+    <text class="intro-line">实习生可以吃CEO，投资人吃所有人</text>
+    <text class="intro-line">需求池是陷阱，跨部门就是过河</text>
+    <text class="intro-line">两个人对战，摸鱼正好来一把</text>
+  </view>
+
+  <button class="start-btn" bindtap="startGame">开始游戏 →</button>
+
+  <view class="footer">
+    <text>今天你想吃掉哪个职位？</text>
+  </view>
+</view>
