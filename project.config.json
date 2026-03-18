@@ -42,13 +42,17 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
-  "appid": "your-appid",
+  "appid": "wx672a6afe76af1975",
   "projectname": "work-animal-chess",
-  "debugOptions": {
-    "hidedInDevtools": []
-  }
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
 }
