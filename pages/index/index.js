@@ -1,4 +1,4 @@
-const { initGame } = require('../../utils/game');
+import { initGame } from '../../utils/game';
 
 Page({
   startGame() {

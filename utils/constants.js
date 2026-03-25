@@ -92,7 +92,7 @@ export const TILE_TYPES = {
     canEnter: true
   },
   river: {
-    id: river',
+    id: 'river',
     name: '跨部门沟',
     description: '跨部门沟通河，只有经理及以上才能走',
     color: '#81d4fa',
@@ -128,14 +128,14 @@ export function canEat(attackerId, defenderId) {
   }
 
   // 常规大小吃
-  return attacker.rank >= defender.rank;
+  return attacker && defender ? attacker.rank >= defender.rank : false;
 }
 
 // 检查能不能过河（跨部门）
 export function canCrossRiver(rankId) {
   const rank = getRankById(rankId);
   // 经理及以上才能跨部门沟通
-  return rank.rank >= 5;
+  return rank ? rank.rank >= 5 : false;
 }
 
 // 初始化棋盘
@@ -145,27 +145,27 @@ export function initBoard() {
   // 红方（左边）
   // 对应传统斗兽棋位置
   const redPositions = [
-    { x: 0, y: 0, rank: 'ceo', color: 'red' },
-    { x: 0, y: 2, rank: 'investor', color: 'red' },
-    { x: 0, y: 4, rank: 'cto', color: 'red' },
-    { x: 0, y: 6, rank: 'director', color: 'red' },
-    { x: 1, y: 1, rank: 'manager', color: 'red' },
-    { x: 1, y: 3, rank: 'senior', color: 'red' },
-    { x: 1, y: 5, rank: 'specialist', color: 'red' },
-    { x: 1, y: 7, rank: 'intern', color: 'red' },
-  };
+    { x: 0, y: 1, rank: 'ceo', color: 'red' },
+    { x: 0, y: 3, rank: 'investor', color: 'red' },
+    { x: 0, y: 5, rank: 'cto', color: 'red' },
+    { x: 0, y: 7, rank: 'director', color: 'red' },
+    { x: 1, y: 0, rank: 'manager', color: 'red' },
+    { x: 1, y: 2, rank: 'senior', color: 'red' },
+    { x: 1, y: 4, rank: 'specialist', color: 'red' },
+    { x: 1, y: 6, rank: 'intern', color: 'red' },
+  ];
 
   // 蓝方（右边）
   const bluePositions = [
-    { x: 7, y: 7, rank: 'ceo', color: 'blue' },
-    { x: 7, y: 5, rank: 'investor', color: 'blue' },
-    { x: 7, y: 3, rank: 'cto', color: 'blue' },
-    { x: 7, y: 1, rank: 'director', color: 'blue' },
-    { x: 6, y: 6, rank: 'manager', color: 'blue' },
-    { x: 6, y: 4, rank: 'senior', color: 'blue' },
-    { x: 6, y: 2, rank: 'specialist', color: 'blue' },
-    { x: 6, y: 0, rank: 'intern', color: 'blue' },
-  };
+    { x: 7, y: 6, rank: 'ceo', color: 'blue' },
+    { x: 7, y: 4, rank: 'investor', color: 'blue' },
+    { x: 7, y: 2, rank: 'cto', color: 'blue' },
+    { x: 7, y: 0, rank: 'director', color: 'blue' },
+    { x: 6, y: 7, rank: 'manager', color: 'blue' },
+    { x: 6, y: 5, rank: 'senior', color: 'blue' },
+    { x: 6, y: 3, rank: 'specialist', color: 'blue' },
+    { x: 6, y: 1, rank: 'intern', color: 'blue' },
+  ];
 
   // 设置地形：四条河在中间
   for (let y = 0; y < 8; y++) {
@@ -177,8 +177,10 @@ export function initBoard() {
   }
 
   // 陷阱：每个家门口放一个陷阱
-  board[0][1] = { type: 'trap', color: 'red' };
-  board[7][6] = { type: 'trap', color: 'blue' };
+  board[0][2] = { type: 'trap', color: 'red' };
+  board[0][5] = { type: 'trap', color: 'red' };
+  board[7][2] = { type: 'trap', color: 'blue' };
+  board[7][5] = { type: 'trap', color: 'blue' };
 
   // 大本营
   board[0][0] = { type: 'headquarter', color: 'red' };
@@ -186,13 +188,25 @@ export function initBoard() {
 
   // 放棋子
   [...redPositions, ...bluePositions].forEach(pos => {
-    board[pos.y][pos.x] = {
-      type: 'piece',
-      rank: pos.rank,
-      color: pos.color,
-      alive: true
-    };
+    // 确保不会覆盖大本营
+    if (!(pos.x === 0 && pos.y === 0) && !(pos.x === 7 && pos.y === 7)) {
+      board[pos.y][pos.x] = {
+        type: 'piece',
+        rank: pos.rank,
+        color: pos.color,
+        alive: true
+      };
+    }
   });
+
+  // 填充剩余的平地
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 8; x++) {
+      if (!board[y][x]) {
+        board[y][x] = { type: 'plain' };
+      }
+    }
+  }
 
   return board;
 }
